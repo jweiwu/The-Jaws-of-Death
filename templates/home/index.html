@@ -43,12 +43,12 @@
         <!-- 清單按鈕 -->
         <ul class="features_btn_lisr">
             <li>
-                <label for="" class="ball_btn clk">
+                <label for="" class="ball_btn clk" id="heatmap">
                     <i class="fas fa-cloud-sun"></i>
                 </label>
             </li>
             <li>
-                <label for="" class="ball_btn">
+                <label for="" class="ball_btn" id="markermap">
                     <i class="fas fa-exclamation-triangle"></i>
                 </label>
             </li>
@@ -276,13 +276,11 @@ $(function() {
         $('.local_inf_box').fadeIn();
     });
 
-
     $('.level_ipt').change(function() {
         $(this).parents('.return_form_li').fadeOut();
     });
 
     $("#datepicker").datepicker();
-
 });
 
 // 關閉當地提示

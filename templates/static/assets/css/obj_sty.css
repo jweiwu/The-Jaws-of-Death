@@ -193,8 +193,12 @@ body {
 .caveat_block {
     position: absolute;
     bottom: 60px;
-    width: 100%;
+    width: 300px;
     text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    margin: 0 auto;
 }
 
 .caveat_block .caveat_box {
@@ -360,7 +364,7 @@ body {
     border-radius: 5px;
     position: fixed;
     bottom: 20px;
-    right:20px;
+    right:60px;
     font-size: 25px;
     background:rgba(0,0,0,.5);
     color:#ffab00;
