@@ -1,0 +1,200 @@
+/*reset===========================================*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    /*vertical-align: baseline;*/
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+    font-family: '微軟正黑體', '蘋果儷中黑', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+/*reset(END)===========================================*/
+
+
+/*.cfx{overflow: auto;zoom: 0;}*/
+
+.cfx:before,
+.cfx:after {
+    display: table;
+    content: ' ';
+    clear: both;
+}
+
+.pc_show {
+    display: block;
+}
+
+.mob_show {
+    display: none;
+}
+
+.h-80 {
+    height: 80px;
+}
+
+input {
+    outline: none;
+}
+
+@media (min-width: 991px) {
+   /* .container {
+        width: 1000px;
+        padding: 0;
+    }*/
+}
+
+@media screen and (max-width: 990px) {
+    .pc_show {
+        display: none;
+    }
+    .mob_show {
+        display: block;
+    }
+}
+
+
+
