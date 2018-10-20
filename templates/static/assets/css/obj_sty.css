@@ -253,8 +253,12 @@ background: none;
 .caveat_block {
     position: absolute;
     bottom: 60px;
-    width: 100%;
+    width: 300px;
     text-align: center;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    margin: 0 auto;
 }
 
 .caveat_block .caveat_box {
