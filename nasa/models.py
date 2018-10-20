@@ -2,7 +2,7 @@ from django.db import models
 
 class Report(models.Model):
     _type = models.IntegerField()
-    # _range = models.IntegerField()
+    value = models.IntegerField()
     longitude = models.FloatField()
     latitude = models.FloatField()
     postdate = models.DateTimeField()
