@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'home',
+    'nasa',
     'trips',
 ]
 
@@ -85,14 +86,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'mysql': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'nasadjango',     # Or path to database file if using sqlite3.
-        'USER': 'django',                     # Not used with sqlite3.
-        'PASSWORD': 'Aa12345!',               # Not used with sqlite3.
-        'HOST': 'localhost',                  # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '3306',                       # Set to empty string for default. Not used with sqlite3.
-    }
+    # 'mysql': {
+    #     'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+    #     'NAME': 'nasadjango',     # Or path to database file if using sqlite3.
+    #     'USER': 'django',                     # Not used with sqlite3.
+    #     'PASSWORD': 'Aa12345!',               # Not used with sqlite3.
+    #     'HOST': 'localhost',                  # Set to empty string for localhost. Not used with sqlite3.
+    #     'PORT': '3306',                       # Set to empty string for default. Not used with sqlite3.
+    # }
 
 }
 
@@ -145,6 +146,9 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     # ]
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }

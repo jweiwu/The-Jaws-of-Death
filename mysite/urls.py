@@ -18,16 +18,20 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from home import views as home_views
+from nasa import views as nasa_views
 from trips import views as trips_views
 
 router = routers.DefaultRouter()
+router.register(r'nasa', nasa_views.ReportViewSet)
 router.register(r'trips', trips_views.PostViewSet)
 
 urlpatterns = [
-    url(r'^api-admin/', admin.site.urls),
     url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
     path('', home_views.index),
     path('trips/', trips_views.index),
     path('trips/details/<int:pk>', trips_views.details, name='details'),
+    path('api/trips/create_betch', trips_views.create_betch),
+    path('api/nasa/create_betch', nasa_views.create_betch),
 ]
