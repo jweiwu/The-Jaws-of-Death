@@ -1,1 +1,7 @@
 /apache_setting.conf
+*.pyc
+/home/__pycache__/*.pyc
+/mysite/__pycache__/*.pyc
+/nasa/__pycache__/*.pyc
+/trips/__pycache__/*.pyc
+/*.sqlite3
