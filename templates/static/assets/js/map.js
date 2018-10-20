@@ -157,14 +157,27 @@ $.ajax({
     res = msg
     for( key in msg ) {
         heatmapList.push({
-            location: new google.maps.LatLng(msg[key].longitude, msg[key].latitude), weight: msg[key].value*500
+            location: new google.maps.LatLng(msg[key].longitude, msg[key].latitude), weight: msg[key].value*1000
         })
     }
+    var gradient = [
+        'rgba(255, 232, 89, 0)',
+        'rgba(255, 250, 228, 0.6)',
+        'rgba(255, 232, 89, 0.7)',
+        'rgba(255, 200, 50, 0.8)',
+        'rgba(255, 180, 30, 0.9)',
+        'rgba(243, 211, 15, 1)',
+        'rgba(243, 150, 7, 1)',
+        'rgba(240, 80, 3, 1)',
+        'rgba(240, 50, 2, 1)',
+        'rgba(240, 0, 0, 1)'
+    ];
     heatmap = new google.maps.visualization.HeatmapLayer({
-        radius: 60,
+        radius: 20,
         opacity:0.8,
         data: heatmapList,
-        map: map
+        map: map,
+        gradient: gradient,
     });
     heatmap.setMap(map);
 });
@@ -185,26 +198,31 @@ function initMap() {
     })
     map = new google.maps.Map(document.getElementById('map'), {
         center: initPos,
-        zoom: 13,
+        zoom: 11,
+        maxZoom: 12,
         styles: styles,
+        fullscreenControl: false,
     });
     google.maps.event.addListener(map, 'click', function(event){
         var latitude = event.latLng.lat();
         var longitude = event.latLng.lng();
+        console.log('latitude:', latitude, 'longitude:', longitude);
     })
     google.maps.event.addListener(map, 'zoom_changed', function() {
         zoomLevel = map.getZoom();
-        if(zoomLevel > 16) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 65);
-        } 
-        else if(zoomLevel > 14) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 60);
-        }
-        else if(zoomLevel > 10) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 40);
-        }
-        else if(zoomLevel > 6) {
+        console.log('zoomLevel', zoomLevel);
+        
+        if(zoomLevel <= 16) {
             heatmap.set('radius', heatmap.get('radius') ? null : 20);
+        } 
+        else if(zoomLevel <= 14) {
+            heatmap.set('radius', heatmap.get('radius') ? null : 15);
+        } 
+        else if(zoomLevel <= 10) {
+            heatmap.set('radius', heatmap.get('radius') ? null : 10);
+        }
+        else if(zoomLevel <= 5) {
+            heatmap.set('radius', heatmap.get('radius') ? null : 5);
         }
     });
     cityCircle = new google.maps.Circle({
@@ -215,7 +233,7 @@ function initMap() {
         fillOpacity: 0.35,
         map: map,
         center: initPos,
-        radius: 5000
+        radius: 15000
     });
     // if (navigator.geolocation) {
     //     navigator.geolocation.getCurrentPosition(function(position) {
