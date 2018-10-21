@@ -149,39 +149,43 @@ var styles = [
         ]
     }
 ]
-$.ajax({
-    method: "GET",
-    url: "/templates/static/assets/js/sample_test01.json"
-    // url: "http://192.168.4.210/api/nasa/get_wind/" + '121.5977645438' + '/' + '25.0390945159',
-})
-.done(function( msg ) {
-    res = msg
-    for( key in msg ) {
-        heatmapList.push({
-            location: new google.maps.LatLng(msg[key].longitude, msg[key].latitude), weight: msg[key].value*1000
-        })
-    }
-    var gradient = [
-        'rgba(255, 232, 89, 0)',
-        'rgba(255, 250, 228, 0.6)',
-        'rgba(255, 232, 89, 0.7)',
-        'rgba(255, 200, 50, 0.8)',
-        'rgba(255, 180, 30, 0.9)',
-        'rgba(243, 211, 15, 1)',
-        'rgba(243, 150, 7, 1)',
-        'rgba(240, 80, 3, 1)',
-        'rgba(240, 50, 2, 1)',
-        'rgba(240, 0, 0, 1)'
-    ];
-    heatmap = new google.maps.visualization.HeatmapLayer({
-        radius: 45,
-        opacity:0.8,
-        data: heatmapList,
-        map: map,
-        gradient: gradient,
+function fetchData (pos){
+    var url = '/api/nasa/get_wind/'+ pos.lng +'/'+ pos.lat
+    $.ajax({
+        method: "GET",
+        url: url,
+    })
+    .done(function( msg ) { 
+        res = msg
+        for( key in msg ) {
+            heatmapList.push({
+                location: new google.maps.LatLng(msg[key].longitude, msg[key].latitude), weight: msg[key].value*1000
+            })
+        }
+        var gradient = [
+            'rgba(255, 232, 89, 0)',
+            'rgba(255, 250, 228, 0.6)',
+            'rgba(255, 232, 89, 0.7)',
+            'rgba(255, 200, 50, 0.8)',
+            'rgba(255, 180, 30, 0.9)',
+            'rgba(243, 211, 15, 1)',
+            'rgba(243, 150, 7, 1)',
+            'rgba(240, 80, 3, 1)',
+            'rgba(240, 50, 2, 1)',
+            'rgba(240, 0, 0, 1)'
+        ];
+        heatmap = new google.maps.visualization.HeatmapLayer({
+            radius: 45,
+            opacity:0.8,
+            data: heatmapList,
+            map: map,
+            gradient: gradient,
+        });
+        cityCircle.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
+        heatmap.setMap(map);
+        map.setCenter(pos);
     });
-    heatmap.setMap(map);
-});
+}
 function closeHeatmap() {
     heatmap.setMap(null);
 }
@@ -205,18 +209,18 @@ function initMap() {
         fullscreenControl: false,
         mapTypeControl: true
     });
-
-    var marker = new google.maps.Marker({
-        position: initPos,
-        map: map
-    });
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
 
     google.maps.event.addListener(searchBox, 'places_changed', function() {
         var places = searchBox.getPlaces();
+        var pos = {
+            lat: places[0].geometry.location.lat(),
+            lng: places[0].geometry.location.lng()
+        };
         console.log('places', places[0].geometry.location.lat());
         console.log('places', places[0].geometry.location.lng());
+        fetchData(pos)
     })
 
 
@@ -228,57 +232,48 @@ function initMap() {
     google.maps.event.addListener(map, 'zoom_changed', function() {
         zoomLevel = map.getZoom();
         console.log('zoomLevel', zoomLevel);
-        
-        if(zoomLevel <= 16) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 60);
-        } 
-        else if(zoomLevel <= 14) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 50);
-        } 
-        else if(zoomLevel <= 10) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 40);
-        }
-        else if(zoomLevel <= 5) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 30);
+        if(heatmap) {
+            if(zoomLevel < 5) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 30);
+            } 
+            else if(zoomLevel < 10) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 40);
+            } 
+            else if(zoomLevel < 15) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 50);
+            }
+            else if(zoomLevel < 17) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 60);
+            }
         }
     });
-    cityCircle = new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: map,
-        center: initPos,
-        radius: 15000
-    });
-    // if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition(function(position) {
-    //         var pos = {
-    //             lat: position.coords.latitude,
-    //             lng: position.coords.longitude
-    //         };
-    //         var marker = new google.maps.Marker({
-    //             position: pos,
-    //             map: map
-    //         });
-    //         var cityCircle = new google.maps.Circle({
-    //             strokeColor: '#FF0000',
-    //             strokeOpacity: 0.8,
-    //             strokeWeight: 2,
-    //             fillColor: '#FF0000',
-    //             fillOpacity: 0.35,
-    //             map: map,
-    //             center: pos,
-    //             radius: 150
-    //         });
-    //         map.setZoom(17);
-    //         map.setCenter(pos);
-    //     });
-    // } else {
-    //     // Browser doesn't support Geolocation
-    //     alert("未允許或遭遇錯誤！");
-    // }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            fetchData(pos)
+            var marker = new google.maps.Marker({
+                position: pos,
+                map: map
+            });
+            cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: pos,
+                radius: 15000
+            });
+            map.setZoom(11);
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        alert("未允許或遭遇錯誤！");
+    }
 }
 function clearMarkers() {
     setMapOnAll(null);
