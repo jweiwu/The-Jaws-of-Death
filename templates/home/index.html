@@ -50,12 +50,12 @@
         <!-- 清單按鈕 -->
         <ul class="features_btn_lisr">
             <li>
-                <label for="" class="ball_btn clk" id="heatmap">
+                <label for="" class="ball_btn clk" id="heatmap" onclick="BallBtnChange(this,'.ball_btn');">
                     <i class="fas fa-cloud-sun"></i>
                 </label>
             </li>
             <li>
-                <label for="" class="ball_btn" id="markermap">
+                <label for="" class="ball_btn" id="markermap" onclick="BallBtnChange(this,'.ball_btn');">
                     <i class="fas fa-exclamation-triangle"></i>
                 </label>
             </li>
@@ -147,6 +147,7 @@
                 <i class="fas fa-exclamation-triangle animated infinite flash"></i>
                 <span>注意！此地氣溫炎熱！</span>
             </div>
+
         </div>
     </div>
     <!-- .map_block -->
@@ -229,16 +230,16 @@
                             </span>
                             <p class="title">風速回報</p>
                             <div class="input_level_box">
-                                <input type="radio" name="wind" id="wind_1" class="level_ipt lv_1">
-                                <label for="wind_1">無風</label>
-                                <input type="radio" name="wind" id="wind_2" class="level_ipt lv_2">
-                                <label for="wind_2">微風</label>
-                                <input type="radio" name="wind" id="wind_3" class="level_ipt lv_3">
-                                <label for="wind_3">強風</label>
-                                <input type="radio" name="wind" id="wind_4" class="level_ipt lv_4">
-                                <label for="wind_4">狂風</label>
-                                <input type="radio" name="wind" id="wind_5" class="level_ipt lv_5">
-                                <label for="wind_5">暴風</label>
+                                <input type="radio" name="wind" id="temperature_1" class="level_ipt lv_1">
+                                <label for="temperature_1">無風</label>
+                                <input type="radio" name="wind" id="temperature_2" class="level_ipt lv_2">
+                                <label for="temperature_2">微風</label>
+                                <input type="radio" name="wind" id="temperature_3" class="level_ipt lv_3">
+                                <label for="temperature_3">強風</label>
+                                <input type="radio" name="wind" id="temperature_4" class="level_ipt lv_4">
+                                <label for="temperature_4">狂風</label>
+                                <input type="radio" name="wind" id="temperature_5" class="level_ipt lv_5">
+                                <label for="temperature_5">暴風</label>
                             </div>
                         </div>
                     </form>
@@ -288,6 +289,8 @@ $(function() {
     $("#datepicker").datepicker({
         dateFormat: "yy-mm-dd"
     });
+
+
 });
 
 // 關閉當地提示
@@ -406,4 +409,11 @@ function Bookmark(elem, btn_class, pg_class, pg_id) {
     $(pg_class).css("display", "none");
     $(pg_id).css("display", "block");
 }
+
+function BallBtnChange(elem,btnClass){
+    $(btnClass).removeClass('clk');
+    $(elem).addClass('clk');
+}
+
+
 </script>
