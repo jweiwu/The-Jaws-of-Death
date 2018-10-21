@@ -34,4 +34,5 @@ urlpatterns = [
     path('trips/details/<int:pk>', trips_views.details, name='details'),
     path('api/trips/create_betch', trips_views.create_betch),
     path('api/nasa/create_betch', nasa_views.create_betch),
+    path('api/nasa/get_wind', nasa_views.get_wind),
 ]
