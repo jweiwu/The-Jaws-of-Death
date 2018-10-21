@@ -19,10 +19,12 @@ def create_betch(request):
     return JsonResponse({'data': received_json_data}, status=status.HTTP_201_CREATED)
 
 def get_valid_data(lon, lat):
-    df = pd.DataFrame.from_records(Report.objects.values())
-    data = data_get.get_curr_data(df)
+    reports = Report.objects.all()
+    # df = pd.DataFrame.from_records(Report.objects.values())
+    data = data_get.get_curr_data(reports)
     data = data_get.get_section(data, float(lon), float(lat))
-    return data
+    df = pd.DataFrame.from_records(data.values())
+    return df
 
 @csrf_exempt
 def get_wind(request, lon, lat):
