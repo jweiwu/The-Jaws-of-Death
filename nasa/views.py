@@ -20,42 +20,46 @@ def create_betch(request):
 
 def get_valid_data(lon, lat):
     df = pd.DataFrame.from_records(Report.objects.values('longitude', 'latitude', 'value'))
-    data = data_get.get_curr_data(data)
-    data = data_get.get_section(data, lon, lat)
+    data = data_get.get_curr_data(df)
+    data = data_get.get_section(data, float(lon), float(lat))
     return data
 
-
+@csrf_exempt
 def get_wind(request, lon, lat):
     data = get_valid_data(lon, lat)
-    data = data_get.wind(df)
+    data = data_get.wind(data)
     return JsonResponse({'data': pd.DataFrame(data).to_json(orient='index')})
 
+@csrf_exempt
 def get_rain(request, lon, lat):
     data = get_valid_data(lon, lat)
-    data = data_get.rain(df)
+    data = data_get.rain(data)
     return JsonResponse({'data': pd.DataFrame(data).to_json(orient='index')})
 
+@csrf_exempt
 def get_temp(request, lon, lat):
     data = get_valid_data(lon, lat)
-    data = data_get.temp(df)
+    data = data_get.temp(data)
     return JsonResponse({'data': pd.DataFrame(data).to_json(orient='index')})
 
-
+@csrf_exempt
 def get_wind_mean(request, lon, lat):
     data = get_valid_data(lon, lat)
-    data = data_get.wind(df)
+    data = data_get.wind(data)
     data = np.mean(data.value)
     return JsonResponse({'data': pd.DataFrame(data).to_json(orient='index')})
 
+@csrf_exempt
 def get_rain_mean(request, lon, lat):
     data = get_valid_data(lon, lat)
-    data = data_get.rain(df)
+    data = data_get.rain(data)
     data = np.mean(data.value)
     return JsonResponse({'data': pd.DataFrame(data).to_json(orient='index')})
 
+@csrf_exempt
 def get_temp_mean(request, lon, lat):
     data = get_valid_data(lon, lat)
-    data = data_get.temp(df)
+    data = data_get.temp(data)
     data = np.mean(data.value)
     return JsonResponse({'data': pd.DataFrame(data).to_json(orient='index')})
 
