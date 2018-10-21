@@ -181,17 +181,7 @@ function fetchData (pos){
             map: map,
             gradient: gradient,
         });
-        cityCircle = new google.maps.Circle({
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35,
-            map: map,
-            center: pos,
-            radius: 15000
-        });
-        google.maps.event.trigger(map, 'resize');
+        cityCircle.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
         heatmap.setMap(map);
         map.setCenter(pos);
     });
@@ -243,17 +233,17 @@ function initMap() {
         zoomLevel = map.getZoom();
         console.log('zoomLevel', zoomLevel);
         if(heatmap) {
-            if(zoomLevel <= 16) {
-                heatmap.set('radius', heatmap.get('radius') ? null : 60);
-            } 
-            else if(zoomLevel <= 14) {
-                heatmap.set('radius', heatmap.get('radius') ? null : 50);
-            } 
-            else if(zoomLevel <= 10) {
-                heatmap.set('radius', heatmap.get('radius') ? null : 40);
-            }
-            else if(zoomLevel <= 5) {
+            if(zoomLevel < 5) {
                 heatmap.set('radius', heatmap.get('radius') ? null : 30);
+            } 
+            else if(zoomLevel < 10) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 40);
+            } 
+            else if(zoomLevel < 15) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 50);
+            }
+            else if(zoomLevel < 17) {
+                heatmap.set('radius', heatmap.get('radius') ? null : 60);
             }
         }
     });
@@ -268,7 +258,17 @@ function initMap() {
                 position: pos,
                 map: map
             });
-            map.setZoom(17);
+            cityCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: pos,
+                radius: 15000
+            });
+            map.setZoom(11);
         });
     } else {
         // Browser doesn't support Geolocation
