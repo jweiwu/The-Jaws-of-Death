@@ -26,10 +26,10 @@ class data_get():
     
     def get_section(df,lon,lat):
         r = 15
-        upper_lat = lat + r/110.574
-        lower_lat = lat - r/110.574
-        upper_lon = lon + r/(111.32*np.cos(lat))
-        lower_lon = lon - r/(111.32*np.cos(lat))
+        upper_lat = lat + r/100
+        lower_lat = lat - r/100
+        upper_lon = lon + r/100
+        lower_lon = lon - r/100
         df_sec = df.loc[(df.longitude<upper_lat) & (df.longitude>lower_lat) & 
                         (df.latitude<upper_lon) & (df.latitude>lower_lon)]
         return df_sec

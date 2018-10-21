@@ -35,4 +35,9 @@ urlpatterns = [
     path('api/trips/create_betch', trips_views.create_betch),
     path('api/nasa/create_betch', nasa_views.create_betch),
     path('api/nasa/get_wind', nasa_views.get_wind),
+    path('api/nasa/get_rain', nasa_views.get_rain),
+    path('api/nasa/get_temp', nasa_views.get_temp),
+    path('api/nasa/get_wind_mean', nasa_views.get_wind_mean),
+    path('api/nasa/get_rain_mean', nasa_views.get_rain_mean),
+    path('api/nasa/get_temp_mean', nasa_views.get_temp_mean),
 ]
