@@ -42,10 +42,10 @@
         <div id="map"></div>
         <!-- 搜尋 -->
         <div class="search_box cfx">
-            <input type="text" name="" id="" placeholder="搜尋...">
-            <button type="button">
+            <input type="text" name="" id="pac-input" placeholder="搜尋...">
+            <!-- <button type="button">
                 <i class="fa fa-search"></i>
-            </button>
+            </button> -->
         </div>
         <!-- 清單按鈕 -->
         <ul class="features_btn_lisr">
@@ -75,6 +75,7 @@
                 </a>
             </li>
         </ul>
+        <p class="people">統計地方人數: 180人</p>
         <!-- 回報按鈕 -->
         <a href="" class="return_weather_btn" data-toggle="modal" data-target="#return_form_box">
             <i class="fas fa-pencil-alt"></i>
@@ -145,7 +146,7 @@
         <div class="caveat_block">
             <div class="caveat_box">
                 <i class="fas fa-exclamation-triangle animated infinite flash"></i>
-                <span>注意！此地氣溫炎熱！</span>
+                <span>注意！此地雨量極大！</span>
             </div>
 
         </div>
@@ -272,7 +273,7 @@
 
 </html>
 <script src="../static/assets/js/map.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn76ncYd5oFnAZ7y_gkJIMFH0Y08wBNcA&libraries=visualization&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn76ncYd5oFnAZ7y_gkJIMFH0Y08wBNcA&libraries=visualization,places&callback=initMap"></script>
 <script>
 $(function() {
     // 啟用燈箱
