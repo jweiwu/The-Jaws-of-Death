@@ -1,5 +1,5 @@
 var map, heatmap, cityCircle;
-var initPos = {lat: 24.7311410025, lng: 121.3397078012}
+var initPos = {lat: 24.994538, lng: 121.450769}
 var heatmapList = []
 var markers = []
 var res
@@ -151,7 +151,8 @@ var styles = [
 ]
 $.ajax({
     method: "GET",
-    url: "/static/assets/js/sample_test.json",
+    url: "/templates/static/assets/js/sample_test01.json"
+    // url: "http://192.168.4.210/api/nasa/get_wind/" + '121.5977645438' + '/' + '25.0390945159',
 })
 .done(function( msg ) {
     res = msg
@@ -173,7 +174,7 @@ $.ajax({
         'rgba(240, 0, 0, 1)'
     ];
     heatmap = new google.maps.visualization.HeatmapLayer({
-        radius: 20,
+        radius: 45,
         opacity:0.8,
         data: heatmapList,
         map: map,
@@ -202,7 +203,23 @@ function initMap() {
         maxZoom: 12,
         styles: styles,
         fullscreenControl: false,
+        mapTypeControl: true
     });
+
+    var marker = new google.maps.Marker({
+        position: initPos,
+        map: map
+    });
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+
+    google.maps.event.addListener(searchBox, 'places_changed', function() {
+        var places = searchBox.getPlaces();
+        console.log('places', places[0].geometry.location.lat());
+        console.log('places', places[0].geometry.location.lng());
+    })
+
+
     google.maps.event.addListener(map, 'click', function(event){
         var latitude = event.latLng.lat();
         var longitude = event.latLng.lng();
@@ -213,16 +230,16 @@ function initMap() {
         console.log('zoomLevel', zoomLevel);
         
         if(zoomLevel <= 16) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 20);
+            heatmap.set('radius', heatmap.get('radius') ? null : 60);
         } 
         else if(zoomLevel <= 14) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 15);
+            heatmap.set('radius', heatmap.get('radius') ? null : 50);
         } 
         else if(zoomLevel <= 10) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 10);
+            heatmap.set('radius', heatmap.get('radius') ? null : 40);
         }
         else if(zoomLevel <= 5) {
-            heatmap.set('radius', heatmap.get('radius') ? null : 5);
+            heatmap.set('radius', heatmap.get('radius') ? null : 30);
         }
     });
     cityCircle = new google.maps.Circle({
@@ -243,7 +260,6 @@ function initMap() {
     //         };
     //         var marker = new google.maps.Marker({
     //             position: pos,
-    //             // icon:'marker.png',
     //             map: map
     //         });
     //         var cityCircle = new google.maps.Circle({
@@ -288,12 +304,21 @@ function setMarkers () {
     };
     
     for( key in res ) {
+        var contentString = '<div id="content"><p>雨量: 大雨</p><p>體感溫度: 很冷</p><p>風速: 暴風</p><p>回饋: 這邊風雨很大不要來，小心不要來</p></div>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
         var marker = new google.maps.Marker({
             position: {lat: res[key].longitude, lng: res[key].latitude},
             map: map,
             icon: image,
             shape: shape,
-            zIndex: res[key].value
+            zIndex: res[key].value,
+            // label: { text: 'A123' },
+        });
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
         });
         markers.push(marker)
     }
