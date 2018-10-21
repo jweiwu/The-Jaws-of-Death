@@ -107,12 +107,19 @@ background: none;
     height: 40px;
     line-height: 40px;
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 65px;
+    right: 10px;
     color: #FFF;
     border-radius: 5px;
     font-size: 20px;
     border: none;
+    border:1px solid #ffac00;
+    transition: .3s;
+}
+
+.local_inf_opbtn:hover i{
+    color:#ffac00; 
+    transition: .3s;
 }
 
 .local_inf_box {
@@ -281,6 +288,7 @@ background: none;
     -webkit-box-shadow: 0px 0px 25px -6px #fff;
     -moz-box-shadow: 0px 0px 25px -6px #fff;
     -o-box-shadow: 0px 0px 25px -6px #fff;
+    margin-bottom: 10px;
 }
 
 .caveat_block .caveat_box i {
