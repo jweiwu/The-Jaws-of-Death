@@ -4,7 +4,8 @@ body {
     height: 100%;
     display: block;
 }
-.people{
+
+.people {
     position: fixed;
     bottom: 20px;
     right: 130px;
@@ -16,6 +17,7 @@ body {
     background: #696a6fc2;
     padding: 10px;
 }
+
 #map {
     position: relative;
     height: 100%;
@@ -34,35 +36,40 @@ body {
     height: 100%;
 }
 
-.search_box{width: 250px;
-border-radius: 30px;
-background: rgba(0,0,0,.7);
-font-size: 14px;
-padding: 5px 15px;
-position: fixed;
-top: 25px;
-left: calc(50% - 125px);
-border:1px solid #ffac00;
-}
-.search_box input{float: left;
-    height: 26px;
-    color: 14px;
-    border:none;
-    width: calc(100% - 30px);
-    background: none;
-    color:#fff;
-}
-.search_box input::placeholder{
-    color:#eee;
+.search_box {
+    width: 250px;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, .7);
+    font-size: 14px;
+    padding: 5px 15px;
+    position: fixed;
+    top: 25px;
+    left: calc(50% - 125px);
+    border: 1px solid #ffac00;
 }
 
-.search_box button{float: left;
-font-size: 16px;
-color: #fff;
-height: 26px;
-width: 30px;
-border:none;
-background: none;
+.search_box input {
+    float: left;
+    height: 26px;
+    color: 14px;
+    border: none;
+    width: calc(100% - 30px);
+    background: none;
+    color: #fff;
+}
+
+.search_box input::placeholder {
+    color: #eee;
+}
+
+.search_box button {
+    float: left;
+    font-size: 16px;
+    color: #fff;
+    height: 26px;
+    width: 30px;
+    border: none;
+    background: none;
 }
 
 .features_btn_lisr {
@@ -83,22 +90,22 @@ background: none;
     display: inline-block;
     margin-bottom: 15px;
     text-align: center;
-    border:1px solid #ffac00;
+    border: 1px solid #ffac00;
     transition: .3s;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-.features_btn_lisr .ball_btn.clk{
-    background:#ffac00;
-    color:#fff;
+.features_btn_lisr .ball_btn.clk {
+    background: #ffac00;
+    color: #fff;
 }
 
-.features_btn_lisr .ball_btn:hover{
-    color:#fff;
+.features_btn_lisr .ball_btn:hover {
+    color: #fff;
 }
 
-.features_btn_lisr .ball_btn:hover i{
-    transform: scale(1.2,1.2);
+.features_btn_lisr .ball_btn:hover i {
+    transform: scale(1.2, 1.2);
 }
 
 .local_inf_opbtn {
@@ -113,12 +120,12 @@ background: none;
     border-radius: 5px;
     font-size: 20px;
     border: none;
-    border:1px solid #ffac00;
+    border: 1px solid #ffac00;
     transition: .3s;
 }
 
-.local_inf_opbtn:hover i{
-    color:#ffac00; 
+.local_inf_opbtn:hover i {
+    color: #ffac00;
     transition: .3s;
 }
 
@@ -135,14 +142,14 @@ background: none;
     background: rgba(78, 78, 78, 0.71);
 }
 
-.local_inf_box .date_sel{
+.local_inf_box .date_sel {
     color: #fff;
-    background:rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, .5);
     padding: 10px;
     width: 100%;
     /*border:1px solid #ffac00;*/
     margin-bottom: 15px;
-    border:none;
+    border: none;
 }
 
 .local_inf_box .close_btn {
@@ -210,13 +217,14 @@ background: none;
 .local_inf_box .weather_list>li .feel_tag.lv_3 {
     background: #F8C600;
 }
+
 .local_inf_box .weather_list>li .feel_tag.lv_4 {
     background: #F7960D;
 }
+
 .local_inf_box .weather_list>li .feel_tag.lv_5 {
     background: #DF0E0E;
 }
-
 
 .local_inf_box .return_list {
     max-height: 200px;
@@ -282,7 +290,7 @@ background: none;
 .caveat_block .caveat_box {
     border-radius: 30px;
     padding: 10px 15px;
-    background: rgba(0,0,0,.8);
+    background: rgba(0, 0, 0, .8);
     display: inline-block;
     box-shadow: 0px 0px 25px -6px #fff;
     -webkit-box-shadow: 0px 0px 25px -6px #fff;
@@ -413,32 +421,32 @@ background: none;
 
 .level_ipt.lv_1:checked+label,
 .level_ipt.lv_1+label:hover {
-    background:#14bf68;
+    background: #14bf68;
 }
 
 .level_ipt.lv_2:checked+label,
 .level_ipt.lv_2+label:hover {
-    background:#A3E10E;
+    background: #A3E10E;
 }
 
-.level_ipt.lv_3:checked+label, 
-.level_ipt.lv_3+label:hover{
-    background:#F8C600;
+.level_ipt.lv_3:checked+label,
+.level_ipt.lv_3+label:hover {
+    background: #F8C600;
 }
 
 .level_ipt.lv_4:checked+label,
 .level_ipt.lv_4+label:hover {
-    background:#F7960D;
+    background: #F7960D;
 }
 
 .level_ipt.lv_5:checked+label,
-.level_ipt.lv_5+label:hover{
-    background:#DF0E0E;
+.level_ipt.lv_5+label:hover {
+    background: #DF0E0E;
 }
 
 .modal-content {}
 
-.return_weather_btn{
+.return_weather_btn {
     width: 50px;
     height: 50px;
     line-height: 50px;
@@ -446,59 +454,87 @@ background: none;
     border-radius: 5px;
     position: fixed;
     bottom: 20px;
-    right:60px;
+    right: 60px;
     font-size: 25px;
-    background:rgba(0,0,0,.5);
-    color:#ffab00;
+    background: rgba(0, 0, 0, .5);
+    color: #ffab00;
     border: 2px solid #ffab00;
     transition: .3s;
 }
 
-.return_weather_btn:hover{
-    color:#fff;
+.return_weather_btn:hover {
+    color: #fff;
 }
 
-.modal-content{
-    background: rgba(255,255,255,.5);
+.modal-content {
+    background: rgba(255, 255, 255, .5);
 }
-.modal-header .close{
+
+.modal-header .close {
     /*color: #06ff87;*/
-    text-shadow:none;
+    text-shadow: none;
 }
 
-.modal-title{
-    color:#fff;
+.modal-title {
+    color: #fff;
 }
 
-.modal-title i{
-    color:#ffab00;
+.modal-title i {
+    color: #ffab00;
 }
 
-.return_danger_box .ipt_sty{
+.return_danger_box .ipt_sty {
     width: 100%;
     height: 32px;
-    background: rgba(0,0,0,.8);
+    background: rgba(0, 0, 0, .8);
     border-radius: 3px;
-    color:#fff;
+    color: #fff;
     font-size: 14px;
-    border:none;
+    border: none;
     padding: 5px;
     letter-spacing: 1.2px;
 }
 
-.return_danger_box .ipt_sty::placeholder{
-    color:#eee;
+.return_danger_box .ipt_sty::placeholder {
+    color: #eee;
 }
 
-.return_danger_box .sub_btn{
+.return_danger_box .sub_btn {
     margin: 20px auto;
     display: block;
     padding: 8px 20px;
-    background:#ffab00;
+    background: #ffab00;
     color: #fff;
     border-radius: 5px;
-    border:none;
+    border: none;
     cursor: pointer;
+}
+
+.nasa_data_btn {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: rgba(0, 0, 0, .5);
+    color: #ffab00;
+    position: fixed;
+    border: none;
+    border-radius: 3px;
+    bottom: 10px;
+    left: 15px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.nasa_data_btn:hover {
+    /*color: #fff;*/
+    background: rgba(0, 0, 0, .8);
+}
+
+.nasa_data_box {
+    color: #fff;
+    line-height: 18px;
+    font-size: 14px;
 }
 
 @media screen and (max-width: 990px) {
@@ -515,8 +551,8 @@ background: none;
     }
 }
 
-@media screen and (min-width: 990px){
-    .search_box{
+@media screen and (min-width: 990px) {
+    .search_box {
         left: 200px;
         top: 15px;
     }
